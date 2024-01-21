@@ -1,15 +1,23 @@
-Original by [Blacktea1501](https://github.com/Blacktea1501)
+Original by [Blacktea1501](https://github.com/Blacktea1501) and [Pantonius](https://github.com/Pantonius)
 
 # Discord Updater
-Downloads and install the latest Discord version for Linux.
+Downloads and installs the latest Discord version for Linux.
+
+# My changes
+- Download `discord.deb` only if Discord isn't already up-to-date
+- Handle Ctrl-C: remove the /tmp/discord-update.XXXXXX directory even if the bash script is interrupted
+- Use the `~/.cache` directory to store various dependencies, such as the `semver` script
 
 ## Setup
 ```bash
 # Clone the repository
-git clone https://github.com/Pantonius/Discord-Update.git
+git clone https://github.com/Oakchris1955/Discord-Update.git
 
 # Change into the directory
 cd Discord-Update
+
+# Grab dependencies
+bash get-dependencies.sh
 
 # Make the script executable
 chmod +x discord-update.sh
@@ -38,3 +46,7 @@ Now you can simply run the script by typing `discord-update` in your terminal:
 ```bash
 discord-update
 ```
+
+### Notes
+
+- Make sure that the `discord-update.sh` and `get-dependencies.sh` scripts are **ALWAYS** in the same directory, otherwise `discord-update.sh` might fail
