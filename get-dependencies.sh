@@ -13,15 +13,26 @@ cd ~/.cache/Discord-Update/deps
 echo "Pulling dependencies..."
 
 semver_script() {
-    echo -n "Grabbing fsaintjacques's semantic version bash script using wget... "
+  echo -n "Grabbing fsaintjacques's semantic version bash script using wget... "
 
-    # Download script
-    wget -q https://github.com/fsaintjacques/semver-tool/raw/3c76a6f9d113f4045f693845131185611a62162e/src/semver
-    # Make it executable
-    chmod +x semver
+  # Download script
+  wget -q https://github.com/fsaintjacques/semver-tool/raw/3c76a6f9d113f4045f693845131185611a62162e/src/semver
+  # Make it executable
+  chmod +x semver
 
-    echo "done"
+  echo "done"
 }
 semver_script
+
+jq_executable() {
+  jq --help &> /dev/null
+  if [[ $? -ne 0 ]]; then
+    echo "jq is in the official Debian repository"
+    sudo apt-get install jq
+  else
+    echo "jq already installed"
+  fi
+}
+jq_executable
 
 echo "done"
